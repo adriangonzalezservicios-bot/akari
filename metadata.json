@@ -1,0 +1,6 @@
+{
+  "name": "Akari Electro & Home",
+  "description": "Tienda en línea de electrodomésticos y artículos para el hogar con diseño amigable.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

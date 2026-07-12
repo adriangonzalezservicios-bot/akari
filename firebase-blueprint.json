@@ -1,0 +1,37 @@
+{
+  "entities": {
+    "Product": {
+      "title": "Product",
+      "description": "A product in the store",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "price": { "type": "number" },
+        "category": { "type": "string" },
+        "image": { "type": "string" },
+        "description": { "type": "string" },
+        "inventory": { "type": "number" },
+        "featured": { "type": "boolean" }
+      },
+      "required": ["name", "price", "category", "image", "description", "inventory"]
+    },
+    "Settings": {
+      "title": "Settings",
+      "description": "Site global settings",
+      "type": "object",
+      "properties": {
+        "bannerUrl": { "type": "string" }
+      }
+    }
+  },
+  "firestore": {
+    "/products/{productId}": {
+      "schema": { "$ref": "#/entities/Product" },
+      "description": "Products in the store"
+    },
+    "/settings/{settingId}": {
+      "schema": { "$ref": "#/entities/Settings" },
+      "description": "Site configuration settings"
+    }
+  }
+}
