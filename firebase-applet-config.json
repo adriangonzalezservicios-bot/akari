@@ -1,11 +1,10 @@
 {
-  "projectId": "rock-dreamer-nfs6l",
-  "appId": "1:795168924706:web:8c2f0202c0cfc62fbb967b",
-  "apiKey": "AIzaSyBg7GdMwnzZj3CAaumvF3MQj5TkLXHH0jM",
-  "authDomain": "rock-dreamer-nfs6l.firebaseapp.com",
-  "firestoreDatabaseId": "ai-studio-harmonishop-4600f0e5-3a9f-4215-af16-c3c785c677ca",
-  "storageBucket": "rock-dreamer-nfs6l.firebasestorage.app",
-  "messagingSenderId": "795168924706",
-  "measurementId": "",
-  "oAuthClientId": "795168924706-mbqmfv904vk4pdvc0ennveflhht8prd4.apps.googleusercontent.com"
+  "projectId": "akari-80531",
+  "appId": "1:252656159221:web:da2f7bade2a4039c2838bc",
+  "apiKey": "AIzaSyCjDvo0SGwsMerfSsJ5LSmVGXG6BA6R0SU",
+  "authDomain": "akari-80531.firebaseapp.com",
+  "firestoreDatabaseId": "(default)",
+  "storageBucket": "akari-80531.firebasestorage.app",
+  "messagingSenderId": "252656159221",
+  "measurementId": "G-9FR7RSF3JK"
 }

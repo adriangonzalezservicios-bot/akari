@@ -14,7 +14,7 @@ interface CartProps {
 
 export function Cart({ isOpen, onClose, items, onUpdateQuantity, onRemoveItem, onCheckout }: CartProps) {
   const subtotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  const total = subtotal; // Add tax/shipping here if needed
+  const total = subtotal;
 
   return (
     <AnimatePresence>
@@ -26,7 +26,7 @@ export function Cart({ isOpen, onClose, items, onUpdateQuantity, onRemoveItem, o
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-akari-brown/40 backdrop-blur-sm z-50"
+            className="fixed inset-0 bg-gray-900/40 backdrop-blur-sm z-50"
           />
 
           {/* Cart Drawer */}
@@ -35,18 +35,18 @@ export function Cart({ isOpen, onClose, items, onUpdateQuantity, onRemoveItem, o
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="fixed top-0 right-0 h-full w-full sm:w-[400px] bg-white/80 backdrop-blur-xl shadow-2xl z-50 flex flex-col border-l border-white/40"
+            className="fixed top-0 right-0 h-full w-full sm:w-[400px] bg-white shadow-2xl z-50 flex flex-col border-l border-black/5"
           >
             {/* Header */}
-            <div className="p-6 flex items-center justify-between border-b border-white/40">
-              <h2 className="text-2xl font-bold text-akari-brown flex items-center gap-2">
-                <ShoppingBag className="text-akari-orange" /> Tu Carrito
+            <div className="p-6 flex items-center justify-between border-b border-black/5">
+              <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
+                <ShoppingBag className="text-gray-900" size={24} /> Tu Carrito
               </h2>
               <button
                 onClick={onClose}
-                className="p-2 text-akari-brown hover:bg-akari-cream rounded-full transition-colors"
+                className="p-2 text-gray-400 hover:bg-gray-100 rounded-full transition-colors"
               >
-                <X size={24} />
+                <X size={20} />
               </button>
             </div>
 
@@ -54,16 +54,16 @@ export function Cart({ isOpen, onClose, items, onUpdateQuantity, onRemoveItem, o
             <div className="flex-1 overflow-y-auto p-6">
               {items.length === 0 ? (
                 <div className="h-full flex flex-col items-center justify-center text-center space-y-4">
-                  <div className="w-24 h-24 bg-akari-cream rounded-full flex items-center justify-center text-akari-orange opacity-50">
-                    <ShoppingBag size={48} />
+                  <div className="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center text-gray-300 mb-2">
+                    <ShoppingBag size={32} />
                   </div>
                   <div>
-                    <p className="text-lg font-bold text-akari-brown">Tu carrito está vacío</p>
-                    <p className="text-sm text-gray-500 mt-1">¡Es hora de añadir cosas lindas!</p>
+                    <p className="text-lg font-bold text-gray-900">Tu carrito está vacío</p>
+                    <p className="text-sm text-gray-500 mt-2">¡Es hora de añadir cosas lindas!</p>
                   </div>
                   <button 
                     onClick={onClose}
-                    className="mt-4 px-6 py-2 bg-akari-green text-white rounded-full font-bold hover:bg-akari-green-dark transition-colors"
+                    className="mt-6 px-6 py-2.5 bg-gray-900 text-white rounded-lg font-semibold hover:bg-gray-800 transition-colors"
                   >
                     Ir a la tienda
                   </button>
@@ -71,41 +71,41 @@ export function Cart({ isOpen, onClose, items, onUpdateQuantity, onRemoveItem, o
               ) : (
                 <div className="space-y-6">
                   {items.map((item) => (
-                    <div key={item.id} className="flex gap-4 bg-white/50 backdrop-blur-sm p-3 rounded-2xl border border-white/60 shadow-sm relative group">
+                    <div key={item.id} className="flex gap-4 p-4 rounded-xl border border-black/5 bg-gray-50/30 relative group">
                       <button 
                         onClick={() => onRemoveItem(item.id)}
-                        className="absolute -top-2 -right-2 bg-white text-gray-400 hover:text-red-500 rounded-full shadow-md p-1 opacity-0 group-hover:opacity-100 transition-opacity border border-gray-100"
+                        className="absolute -top-2 -right-2 bg-white text-gray-400 hover:text-red-500 rounded-full shadow-sm p-1.5 opacity-0 group-hover:opacity-100 transition-opacity border border-black/5"
                       >
-                        <X size={16} strokeWidth={3} />
+                        <X size={14} strokeWidth={2.5} />
                       </button>
                       <img
                         src={item.image}
                         alt={item.name}
-                        className="w-20 h-20 object-cover rounded-xl bg-akari-cream"
+                        className="w-20 h-20 object-contain rounded-lg bg-white border border-black/5 p-2 mix-blend-multiply"
                       />
-                      <div className="flex-1 flex flex-col justify-between py-1">
+                      <div className="flex-1 flex flex-col justify-between py-0.5">
                         <div>
-                          <h3 className="font-bold text-akari-brown text-sm line-clamp-2 leading-tight">{item.name}</h3>
-                          <p className="text-akari-green-outline font-extrabold mt-1">${item.price.toFixed(2)}</p>
+                          <h3 className="font-semibold text-gray-900 text-sm line-clamp-2 leading-tight">{item.name}</h3>
+                          <p className="text-gray-900 font-bold mt-1.5">${item.price.toFixed(2)}</p>
                         </div>
                         
-                        <div className="flex items-center gap-3 bg-akari-cream rounded-lg w-max p-1">
+                        <div className="flex items-center gap-3 bg-white border border-black/5 rounded-md w-max p-1 mt-2">
                           <button
                             onClick={() => onUpdateQuantity(item.id, item.quantity - 1)}
-                            className="p-1 hover:bg-white rounded-md text-akari-brown transition-colors"
+                            className="p-1 hover:bg-gray-50 rounded text-gray-500 transition-colors disabled:opacity-50"
                             disabled={item.quantity <= 1}
                           >
-                            <Minus size={14} strokeWidth={3} />
+                            <Minus size={14} strokeWidth={2.5} />
                           </button>
-                          <span className="font-bold text-sm w-4 text-center text-akari-brown">
+                          <span className="font-semibold text-sm w-4 text-center text-gray-900">
                             {item.quantity}
                           </span>
                           <button
                             onClick={() => onUpdateQuantity(item.id, item.quantity + 1)}
-                            className="p-1 hover:bg-white rounded-md text-akari-brown transition-colors"
-                            disabled={item.quantity >= item.inventory} // Respect inventory
+                            className="p-1 hover:bg-gray-50 rounded text-gray-500 transition-colors disabled:opacity-50"
+                            disabled={item.quantity >= item.inventory}
                           >
-                            <Plus size={14} strokeWidth={3} />
+                            <Plus size={14} strokeWidth={2.5} />
                           </button>
                         </div>
                       </div>
@@ -117,24 +117,24 @@ export function Cart({ isOpen, onClose, items, onUpdateQuantity, onRemoveItem, o
 
             {/* Footer */}
             {items.length > 0 && (
-              <div className="p-6 bg-akari-cream/50 border-t border-akari-orange-light">
+              <div className="p-6 bg-gray-50 border-t border-black/5">
                 <div className="flex justify-between items-center mb-6">
-                  <span className="text-lg font-semibold text-akari-brown">Total a pagar</span>
-                  <span className="text-2xl font-extrabold text-akari-green-outline">
+                  <span className="text-base font-semibold text-gray-500">Total a pagar</span>
+                  <span className="text-2xl font-bold text-gray-900">
                     ${total.toFixed(2)}
                   </span>
                 </div>
                 
                 <button
                   onClick={onCheckout}
-                  className="w-full py-4 px-6 bg-akari-green text-white rounded-2xl font-bold text-lg hover:bg-akari-green-dark transition-all transform active:scale-95 flex items-center justify-center gap-2 shadow-lg shadow-akari-green/20"
+                  className="w-full py-3.5 px-6 bg-gray-900 text-white rounded-xl font-bold hover:bg-gray-800 transition-all active:scale-[0.98] flex items-center justify-center gap-2 shadow-sm"
                 >
-                  <CreditCard size={20} />
+                  <CreditCard size={18} />
                   Pagar Ahora
                 </button>
                 
-                <div className="mt-4 flex items-center justify-center gap-2 text-xs font-semibold text-gray-500">
-                  <ShieldCheck size={16} className="text-akari-green" />
+                <div className="mt-5 flex items-center justify-center gap-2 text-xs font-medium text-gray-400">
+                  <ShieldCheck size={16} className="text-green-600" />
                   <span>Pago 100% seguro y encriptado</span>
                 </div>
               </div>

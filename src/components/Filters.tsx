@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronDown, ChevronUp, Filter } from 'lucide-react';
+import { ChevronDown, ChevronUp, Filter, Check } from 'lucide-react';
 
 interface FiltersProps {
   categories: string[];
@@ -18,43 +18,48 @@ export function Filters({
   onPriceChange,
   maxPrice
 }: FiltersProps) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
 
   return (
-    <div className="sticky top-32 pr-0 lg:pr-4 z-30">
-      <div className="bg-white/40 backdrop-blur-md rounded-xl shadow-sm border border-white/60 overflow-hidden">
+    <div className="z-30">
+      <div className="bg-white rounded-2xl shadow-sm border border-black/5 overflow-hidden">
         <button 
           onClick={() => setIsOpen(!isOpen)}
-          className="flex items-center justify-between w-full p-4 hover:bg-white/50 transition-colors"
+          className="flex items-center justify-between w-full p-5 hover:bg-gray-50 transition-colors"
         >
-          <div className="flex items-center gap-2">
-            <Filter size={20} className="text-akari-green" />
-            <h3 className="text-lg font-semibold text-gray-800">Filtros</h3>
+          <div className="flex items-center gap-3">
+            <Filter size={18} className="text-gray-900" />
+            <h3 className="text-sm font-bold uppercase tracking-wider text-gray-900">Filtros</h3>
           </div>
-          <div className="text-gray-500">
-            {isOpen ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+          <div className="text-gray-400">
+            {isOpen ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
           </div>
         </button>
 
         <div 
-          className={`px-4 transition-all duration-300 ease-in-out origin-top ${
-            isOpen ? 'max-h-[500px] py-4 opacity-100' : 'max-h-0 py-0 opacity-0 pointer-events-none'
+          className={`px-5 transition-all duration-300 ease-in-out origin-top border-t border-black/5 ${
+            isOpen ? 'max-h-[800px] py-6 opacity-100' : 'max-h-0 py-0 opacity-0 pointer-events-none'
           }`}
         >
           <div className="mb-8">
-            <h4 className="font-semibold text-sm text-gray-800 mb-3">Categorías</h4>
-            <ul className="space-y-2">
+            <h4 className="font-semibold text-sm text-gray-900 mb-4">Categorías</h4>
+            <ul className="space-y-1">
               {categories.map((category) => (
                 <li key={category}>
                   <button 
                     onClick={() => onSelectCategory(category)}
-                    className={`text-sm text-left w-full transition-colors ${
-                      selectedCategory === category 
-                        ? 'text-akari-green-dark font-semibold' 
-                        : 'text-gray-600 hover:text-akari-green-dark'
-                    }`}
+                    className="flex items-center justify-between w-full py-2 px-3 rounded-lg text-sm transition-colors hover:bg-gray-50 group"
                   >
-                    {category}
+                    <span className={`transition-colors ${
+                      selectedCategory === category 
+                        ? 'text-gray-900 font-semibold' 
+                        : 'text-gray-500 group-hover:text-gray-900'
+                    }`}>
+                      {category}
+                    </span>
+                    {selectedCategory === category && (
+                      <Check size={16} className="text-gray-900" />
+                    )}
                   </button>
                 </li>
               ))}
@@ -62,20 +67,14 @@ export function Filters({
           </div>
 
           <div>
-            <h4 className="font-semibold text-sm text-gray-800 mb-4">Precio</h4>
-            <div className="flex items-center gap-2 mb-4">
-              <input
-                type="number"
-                value={priceRange[0]}
-                readOnly
-                className="w-full px-2 py-1 text-sm border border-gray-300 rounded text-center text-gray-600 bg-white/50 shadow-sm"
-              />
-              <span className="text-gray-400">-</span>
+            <h4 className="font-semibold text-sm text-gray-900 mb-4">Precio hasta</h4>
+            <div className="flex items-center gap-2 mb-5">
+              <span className="text-gray-400 text-sm">$</span>
               <input
                 type="number"
                 value={priceRange[1]}
                 readOnly
-                className="w-full px-2 py-1 text-sm border border-gray-300 rounded text-center text-gray-600 bg-white/50 shadow-sm"
+                className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg font-semibold text-gray-900 bg-gray-50/50 shadow-sm outline-none"
               />
             </div>
             
@@ -83,10 +82,10 @@ export function Filters({
               type="range"
               min={0}
               max={maxPrice}
-              step={5}
+              step={10}
               value={priceRange[1]}
               onChange={(e) => onPriceChange([priceRange[0], parseInt(e.target.value)])}
-              className="w-full h-1 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-akari-green mb-2"
+              className="w-full h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-gray-900"
             />
           </div>
         </div>

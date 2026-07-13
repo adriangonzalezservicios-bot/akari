@@ -15,4 +15,16 @@ export interface CartItem extends Product {
 
 export interface SiteSettings {
   bannerUrl: string;
+  logoUrl?: string;
+  heroTitle?: string;
+  heroSubtitle?: string;
+  contactEmail?: string;
+  contactPhone?: string;
+  contactAddress?: string;
+  instagramUrl?: string;
+  facebookUrl?: string;
+  twitterUrl?: string;
+  mercadopagoPublicKey?: string;
+  mercadopagoAccessToken?: string;
+  mercadopagoAlias?: string;
 }
