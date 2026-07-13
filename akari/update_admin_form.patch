@@ -1,0 +1,97 @@
+--- src/components/AdminPanel.tsx
++++ src/components/AdminPanel.tsx
+@@ -217,14 +217,99 @@
+               <div className="bg-white p-8 rounded-3xl shadow-sm border border-gray-100">
+                 <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+                   <ImageIcon className="text-akari-orange" />
+                   Configuración General
+                 </h2>
+                 <form onSubmit={handleSaveSettings} className="space-y-6">
+-                  <div>
+-                    <label className="block text-sm font-semibold text-gray-700 mb-2">URL de la Imagen del Banner</label>
+-                    <input 
+-                      type="text" 
+-                      value={settings.bannerUrl} 
+-                      onChange={e => setSettings({...settings, bannerUrl: e.target.value})}
+-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-akari-orange outline-none"
+-                      required
+-                    />
+-                    <p className="text-xs text-gray-500 mt-2">Puedes poner un link a cualquier imagen para actualizar la cabecera de la tienda.</p>
+-                  </div>
+-                  {settings.bannerUrl && (
+-                    <div className="mt-4 border border-gray-200 rounded-xl overflow-hidden h-40 relative">
+-                      <img src={settings.bannerUrl} alt="Vista previa del banner" className="w-full h-full object-cover" />
+-                      <div className="absolute top-2 left-2 bg-black/50 text-white text-xs px-2 py-1 rounded">Vista Previa</div>
+-                    </div>
+-                  )}
++                  
++                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
++                    <div className="col-span-1 md:col-span-2">
++                      <h3 className="text-lg font-bold text-akari-green border-b pb-2 mb-4">Cabecera y Textos</h3>
++                    </div>
++                    <div>
++                      <label className="block text-sm font-semibold text-gray-700 mb-2">URL del Banner Principal</label>
++                      <input type="text" value={settings.bannerUrl || ''} onChange={e => setSettings({...settings, bannerUrl: e.target.value})} className="w-full px-4 py-2 rounded-xl border border-gray-200 focus:ring-2 focus:ring-akari-orange outline-none" required />
++                    </div>
++                    <div>
++                      <label className="block text-sm font-semibold text-gray-700 mb-2">Título Principal (Hero)</label>
++                      <input type="text" value={settings.heroTitle || ''} onChange={e => setSettings({...settings, heroTitle: e.target.value})} className="w-full px-4 py-2 rounded-xl border border-gray-200 focus:ring-2 focus:ring-akari-orange outline-none" />
++                    </div>
++                    <div className="col-span-1 md:col-span-2">
++                      <label className="block text-sm font-semibold text-gray-700 mb-2">Subtítulo (Hero)</label>
++                      <textarea value={settings.heroSubtitle || ''} onChange={e => setSettings({...settings, heroSubtitle: e.target.value})} className="w-full px-4 py-2 rounded-xl border border-gray-200 focus:ring-2 focus:ring-akari-orange outline-none" rows={2} />
++                    </div>
++
++                    <div className="col-span-1 md:col-span-2 mt-4">
++                      <h3 className="text-lg font-bold text-akari-green border-b pb-2 mb-4">Pie de Página (Contacto)</h3>
++                    </div>
++                    <div>
++                      <label className="block text-sm font-semibold text-gray-700 mb-2">Email de Contacto</label>
++                      <input type="email" value={settings.contactEmail || ''} onChange={e => setSettings({...settings, contactEmail: e.target.value})} className="w-full px-4 py-2 rounded-xl border border-gray-200 focus:ring-2 focus:ring-akari-orange outline-none" />
++                    </div>
++                    <div>
++                      <label className="block text-sm font-semibold text-gray-700 mb-2">Teléfono / WhatsApp</label>
++                      <input type="text" value={settings.contactPhone || ''} onChange={e => setSettings({...settings, contactPhone: e.target.value})} className="w-full px-4 py-2 rounded-xl border border-gray-200 focus:ring-2 focus:ring-akari-orange outline-none" />
++                    </div>
++                    <div className="col-span-1 md:col-span-2">
++                      <label className="block text-sm font-semibold text-gray-700 mb-2">Dirección Física</label>
++                      <input type="text" value={settings.contactAddress || ''} onChange={e => setSettings({...settings, contactAddress: e.target.value})} className="w-full px-4 py-2 rounded-xl border border-gray-200 focus:ring-2 focus:ring-akari-orange outline-none" />
++                    </div>
++                    
++                    <div className="col-span-1 md:col-span-2 mt-4">
++                      <h3 className="text-lg font-bold text-akari-green border-b pb-2 mb-4">Redes Sociales (URLs)</h3>
++                    </div>
++                    <div>
++                      <label className="block text-sm font-semibold text-gray-700 mb-2">Instagram</label>
++                      <input type="url" value={settings.instagramUrl || ''} onChange={e => setSettings({...settings, instagramUrl: e.target.value})} className="w-full px-4 py-2 rounded-xl border border-gray-200 focus:ring-2 focus:ring-akari-orange outline-none" />
++                    </div>
++                    <div>
++                      <label className="block text-sm font-semibold text-gray-700 mb-2">Facebook</label>
++                      <input type="url" value={settings.facebookUrl || ''} onChange={e => setSettings({...settings, facebookUrl: e.target.value})} className="w-full px-4 py-2 rounded-xl border border-gray-200 focus:ring-2 focus:ring-akari-orange outline-none" />
++                    </div>
++                    <div>
++                      <label className="block text-sm font-semibold text-gray-700 mb-2">Twitter / X</label>
++                      <input type="url" value={settings.twitterUrl || ''} onChange={e => setSettings({...settings, twitterUrl: e.target.value})} className="w-full px-4 py-2 rounded-xl border border-gray-200 focus:ring-2 focus:ring-akari-orange outline-none" />
++                    </div>
++
++                    <div className="col-span-1 md:col-span-2 mt-4">
++                      <h3 className="text-lg font-bold text-akari-green border-b pb-2 mb-4">Métodos de Pago (Mercado Pago)</h3>
++                    </div>
++                    <div>
++                      <label className="block text-sm font-semibold text-gray-700 mb-2">Public Key (Mercado Pago)</label>
++                      <input type="text" value={settings.mercadopagoPublicKey || ''} onChange={e => setSettings({...settings, mercadopagoPublicKey: e.target.value})} className="w-full px-4 py-2 rounded-xl border border-gray-200 focus:ring-2 focus:ring-akari-orange outline-none" />
++                    </div>
++                    <div>
++                      <label className="block text-sm font-semibold text-gray-700 mb-2">Access Token (Mercado Pago)</label>
++                      <input type="password" value={settings.mercadopagoAccessToken || ''} onChange={e => setSettings({...settings, mercadopagoAccessToken: e.target.value})} className="w-full px-4 py-2 rounded-xl border border-gray-200 focus:ring-2 focus:ring-akari-orange outline-none" />
++                    </div>
++                    <div>
++                      <label className="block text-sm font-semibold text-gray-700 mb-2">Alias CVU / CBU (Transferencias)</label>
++                      <input type="text" value={settings.mercadopagoAlias || ''} onChange={e => setSettings({...settings, mercadopagoAlias: e.target.value})} className="w-full px-4 py-2 rounded-xl border border-gray-200 focus:ring-2 focus:ring-akari-orange outline-none" />
++                    </div>
++
++                  </div>
++
+                   <button 
+                     type="submit"
+                     className="px-6 py-3 bg-akari-green text-white font-bold rounded-xl hover:bg-akari-green-dark transition-colors"

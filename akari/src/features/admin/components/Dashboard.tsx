@@ -1,0 +1,5 @@
+import type { Product } from '../../../types';
+export function Dashboard({ products }: { products: Product[] }) {
+  const stats = [{ label: 'Total productos', value: products.length }, { label: 'Agotados', value: products.filter((p) => p.inventory <= 0).length }, { label: 'Categorías', value: new Set(products.map((p) => p.category)).size }, { label: 'Valor inventario', value: `$${products.reduce((total, p) => total + p.price * p.inventory, 0).toLocaleString()}` }];
+  return <div className="space-y-6"><div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">{stats.map((stat) => <div key={stat.label} className="bg-white rounded-2xl border p-5"><p className="text-sm text-gray-500">{stat.label}</p><p className="text-3xl font-bold">{stat.value}</p></div>)}</div><div className="bg-white rounded-2xl border p-6"><h2 className="font-bold mb-4">Productos destacados</h2>{products.filter((p) => p.featured).map((p) => <div className="flex justify-between border-t py-3" key={p.id}><span>{p.name}</span><span>${p.price.toFixed(2)}</span></div>)}</div></div>;
+}
